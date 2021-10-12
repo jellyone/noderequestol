@@ -2,7 +2,7 @@ var phuong_xa_Source = new ol.source.TileWMS({
     url: `${url_server}/wms`,
     params: {
         // 'REQUEST': 'Getmap',
-        'LAYERS': 'test.tmt.gis:hcm_phuong_xa',
+        'LAYERS': 'vietnam:vn_xa',
         'TILED': true,
 
         // 'BBOX': `${extent[0]},${extent[1]},${extent[2]},${extent[3]}`,

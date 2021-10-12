@@ -3,8 +3,6 @@ const OSM = new ol.layer.Tile({
 });
 
 
-
-
 const layers_vector = [];
 
 layers_vector.push(point)
@@ -13,14 +11,51 @@ const base_map = [];
 
 base_map.push(OSM);
 
+
 const allLayers = [layers_quan_huyen, layers_phuong_xa, VL_road, layers_building, layers_Gr];
 
 const choseLayers = [];
+
+
+
+
+
+const layer_base = new ol.Collection({
+    array:layers_vector  
+});
+
+const layer_select = layer_base.getArray()['array']
+console.log(layer_select)
+
+function Collection_Taba(collection,callback,index,layer){
+    const arr = collection['array_']['array'];
+    return callback(arr,index,layer,collection)
+    // console.log(callback(arr))
+};
+
+function getLength_Taba(arr){
+    const length = arr['length']
+    return length
+}
+
+
+//push 1 layer to collection in index
+function push_Taba(arr,index,layer,collection){
+    const length = arr['length']
+    
+    if(length > 0){        
+        arr.splice(index,0,layer)              
+        return collection
+    }
+};
+
+
 
 // choseLayers.push(base_map[0]);
 
 // choseLayers.push(allLayers[0])
 
+const a = Collection_Taba(layer_base,push_Taba,3,base_map[0]).getArray()['array'];
 
 
 const view = new ol.View({
@@ -31,7 +66,7 @@ const view = new ol.View({
 
 
 const map = new ol.Map({
-    layers: [...choseLayers,layers_vector[0]],
+    layers: a,
     target: 'show-map__content',
     view: view,
     controls: ol.control.defaults({ attribution: false }).extend([attribution]),
