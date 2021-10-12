@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.get('/', cors(corsOptions), (req, res) => {
+app.get('/', (req, res) => {
 "Check request"
 })
 
